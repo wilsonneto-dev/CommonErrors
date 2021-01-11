@@ -1,0 +1,5 @@
+
+Azure Web App:
+`Could not load file or assembly 'Microsoft.Media.Drm.RMUtil' or one of its dependencies. An attempt was made to load a program with an incorrect format.`
+fix: change it to 64 bits
+
