@@ -3,3 +3,11 @@ Azure Web App:
 `Could not load file or assembly 'Microsoft.Media.Drm.RMUtil' or one of its dependencies. An attempt was made to load a program with an incorrect format.`
 fix: change it to 64 bits
 
+---
+
+Bug de CORS axios/chrome/wcf/webapp: Ao colocarmos o header Authorization como header default do axios para enviarmos sempre, o chrome começou a enviar uma request OPTIONS antes de enviar a request que fizemos, comportamento padrão por estarmos enviando um header novo fora do padrão, ele envia este OPTIONS para ver se as politicas de CORS do server aceitam o verbo http e os headers que vamos enviar.
+ 
+Porém mesmo tendo a configuração no webconfig de header e de verbo http ao receber uma request OPTIONS o server responde com 405 (Not Allowed), se colocassemos no WebApp o CORS como "*" receberiamos um erro no chrome de header de CORS duplicado, pois tinha tanto no webconfi quanto no webapp a declaração.
+ 
+A solução foi remover do webconfig e deixar as diretrizes do CORS apenas no webapp, para não haver 405 nem duplicação.
+
